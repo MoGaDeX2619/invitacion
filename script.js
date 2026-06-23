@@ -10,7 +10,7 @@ const proyectos = [
     id: 'Siguiente Dos',
     nombre: 'Dent visión',
     descripcion: 'Sistema de diagnóstico y análisis odontológico con visión avanzada e inteligencia.',
-    url: '#',
+    url: 'siguiente_tres.html',
     icon: '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 12C24 20 18 20 18 34C18 46 26 54 32 54C38 54 46 46 46 34C46 20 40 20 32 12Z" stroke="#7dd3ff" stroke-width="4"/><path d="M32 14C32 14 38 18 40 24" stroke="#7dd3ff" stroke-width="4" stroke-linecap="round"/></svg>'
   },
   {

@@ -5,325 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Datastock</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    body.datastock-page {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top left, rgba(0, 150, 255, 0.2), transparent 24%),
-                  radial-gradient(circle at bottom right, rgba(255, 180, 20, 0.18), transparent 25%),
-                  #040d1f;
-      color: #eaf5ff;
-    }
-    body.datastock-page::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-                        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .content-page {
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      margin: 40px auto 60px;
-      padding: 36px;
-      background: rgba(6, 10, 30, 0.96);
-      border: 1px solid rgba(90, 195, 255, 0.16);
-      border-radius: 32px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
-    }
-    .hero-banner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      margin-bottom: 34px;
-      padding: 26px;
-      background: rgba(6, 16, 38, 0.95);
-      border: 1px solid rgba(100, 160, 255, 0.18);
-      border-radius: 28px;
-    }
-    .hero-banner h2 {
-      margin: 0;
-      font-size: 1.55rem;
-      color: #a8dfff;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(9, 30, 62, 0.95);
-      border: 1px solid rgba(150, 190, 255, 0.16);
-      color: #c7e8ff;
-      font-weight: 600;
-    }
-    .hero-chips .chip {
-      background: rgba(12, 35, 72, 0.92);
-      border-color: rgba(255, 172, 45, 0.18);
-    }
-    .tagline {
-      margin-top: 34px;
-      padding: 26px;
-      border-radius: 28px;
-      background: rgba(8, 20, 50, 0.95);
-      border: 1px solid rgba(255, 174, 45, 0.18);
-      display: grid;
-      gap: 14px;
-    }
-    .tagline p {
-      margin: 0;
-      font-size: 1.05rem;
-    }
-    .tagline strong {
-      color: #eaf6ff;
-    }
-    @media (max-width: 820px) {
-      .content-page {
-        margin: 24px 16px 48px;
-        padding: 28px;
-      }
-      .hero-banner,
-      .grid-section {
-        grid-template-columns: 1fr;
-      }
-    }
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      margin: 40px auto 60px;
-      padding: 36px;
-      background: rgba(6, 12, 34, 0.96);
-      border: 1px solid rgba(56, 168, 255, 0.12);
-      border-radius: 32px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
-    }
-    .content-page::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 32px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(0, 194, 255, 0.2), transparent 35%, rgba(6, 220, 156, 0.18));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-    .back-link {
-      margin-bottom: 24px;
-    }
-    .back-link a {
-      color: #7ce1ff;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid rgba(124, 225, 255, 0.25);
-      padding: 10px 16px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s ease;
-    }
-    .back-link a:hover {
-      background: rgba(124, 225, 255, 0.1);
-    }
-    h1 {
-      margin-top: 0;
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      letter-spacing: 0.06em;
-      color: #f0fbff;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    h3 {
-      color: #86c9ff;
-      margin-bottom: 18px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    p,
-    li {
-      color: #d4e7ff;
-      line-height: 1.9;
-      margin-bottom: 16px;
-      font-size: 1rem;
-    }
-    strong {
-      color: #f8fcff;
-    }
-    ul {
-      padding-left: 1.35rem;
-      margin: 0 0 20px 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-    ul li {
-      position: relative;
-      padding-left: 24px;
-    }
-    ul li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.65em;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4fd3ff, #6ec6ff);
-      box-shadow: 0 0 12px rgba(109, 206, 255, 0.5);
-    }
-    .hero-banner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      margin-bottom: 34px;
-      padding: 26px;
-      background: rgba(3, 19, 44, 0.95);
-      border: 1px solid rgba(74, 167, 255, 0.18);
-      border-radius: 28px;
-    }
-    .hero-banner h2 {
-      margin: 0;
-      font-size: 1.55rem;
-      color: #bde7ff;
-    }
-    .hero-banner p {
-      margin: 14px 0 0;
-      max-width: 560px;
-    }
-    .hero-chips {
-      display: grid;
-      gap: 14px;
-      margin-top: 22px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(12, 28, 56, 0.95);
-      border: 1px solid rgba(95, 188, 255, 0.18);
-      color: #c7e8ff;
-      font-weight: 600;
-    }
-    .grid-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-    .panel {
-      padding: 24px;
-      border-radius: 28px;
-      background: rgba(5, 14, 34, 0.95);
-      border: 1px solid rgba(77, 175, 255, 0.14);
-      box-shadow: inset 0 0 30px rgba(24, 84, 139, 0.12);
-    }
-    .panel h3 {
-      margin-top: 0;
-      font-size: 1.2rem;
-    }
-    .panel ul {
-      padding-left: 1rem;
-    }
-    .panel li {
-      margin-bottom: 12px;
-    }
-    .tagline {
-      margin-top: 34px;
-      padding: 26px;
-      border-radius: 28px;
-      background: rgba(9, 24, 50, 0.95);
-      border: 1px solid rgba(102, 204, 255, 0.18);
-      display: grid;
-      gap: 14px;
-    }
-    .tagline p {
-      margin: 0;
-      font-size: 1.05rem;
-    }
-    .tagline strong {
-      color: #eaf6ff;
-    }
-    @media (max-width: 820px) {
-      .content-page {
-        margin: 24px 16px 48px;
-        padding: 28px;
-      }
-      .hero-banner,
-      .grid-section {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body class="datastock-page">
-  <div class="content-page">
-    <p class="back-link"><a href="index.html">← Volver al inicio</a></p>
-    <div class="hero-banner">
+  <main class="content-page">
+    <p class="back-link"><a href="index.html">Volver al inicio</a></p>
+
+    <section class="hero-banner">
       <div>
-        <h2>Datastock</h2>
+        <p class="eyebrow">Inteligencia estratégica</p>
+        <h1>Datastock</h1>
         <p><strong>Datastock</strong> impulsa decisiones estratégicas mediante análisis avanzado y visualización de datos, integrando inteligencia y soluciones operativas para empresas orientadas a resultados.</p>
         <div class="hero-chips">
           <span class="chip">Análisis inteligente</span>
-          <span class="chip">Visualización de datos</span>
-          <span class="chip">Toma de decisiones</span>
+          <span class="chip">Visualización</span>
+          <span class="chip">Indicadores clave</span>
         </div>
       </div>
-      <div>
-        <div class="chip">Datastock</div>
-        <div class="chip">Inteligencia estratégica</div>
-        <div class="chip">Soluciones operativas</div>
+      <div class="side-stack">
+        <img src="logo de data stock.png" alt="Logo Datastock" class="project-logo-large">
+        <span class="chip">Dashboards</span>
+        <span class="chip">Decisiones con datos</span>
       </div>
-    </div>
+    </section>
 
-    <div class="grid-section">
+    <section class="grid-section">
       <div class="panel">
-        <h3>🚀 Propósito</h3>
-        <p>Proveer una plataforma robusta de análisis y visualización de datos que transforme grandes volúmenes de información en insights claros y accionables para empresas y equipos técnicos.</p>
+        <h3>Propósito</h3>
+        <p>Proveer una plataforma de análisis y visualización que transforme grandes volúmenes de información en ideas claras, accionables y útiles para equipos técnicos y administrativos.</p>
       </div>
       <div class="panel">
-        <h3>🎯 Enfoque</h3>
+        <h3>Enfoque</h3>
         <p>Integrar tecnología de datos con operaciones estratégicas para mejorar la eficiencia, la capacidad de respuesta y la comprensión del negocio en tiempo real.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="grid-section">
+    <section class="grid-section">
       <div class="panel">
-        <h3>⚙️ Funcionalidades clave</h3>
+        <h3>Funcionalidades clave</h3>
         <ul>
           <li>Consolidación de datos desde múltiples fuentes.</li>
           <li>Dashboards interactivos para análisis visual.</li>
           <li>Alertas y reportes inteligentes.</li>
-          <li>Segmentación y seguimiento de indicadores.</li>
+          <li>Seguimiento de indicadores relevantes.</li>
           <li>Soporte para decisiones rápidas y basadas en datos.</li>
         </ul>
       </div>
       <div class="panel">
-        <h3>💡 Resultados esperados</h3>
+        <h3>Resultados esperados</h3>
         <ul>
           <li>Mejora de la visibilidad empresarial.</li>
           <li>Reducción del tiempo de respuesta.</li>
           <li>Mayor precisión en decisiones estratégicas.</li>
           <li>Optimización de operaciones y recursos.</li>
-          <li>Capacidad para detectar tendencias y oportunidades.</li>
+          <li>Detección de tendencias y oportunidades.</li>
         </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="tagline">
-      <p><strong>"Convierte tus datos en decisiones inteligentes."</strong></p>
-      <p><strong>"Visualiza resultados, impulsa operaciones."</strong></p>
-    </div>
-  </div>
+    <section class="tagline">
+      <p><strong>Convierte tus datos en decisiones inteligentes.</strong></p>
+      <p>Visualiza resultados para impulsar mejores operaciones.</p>
+    </section>
+  </main>
 </body>
 </html>

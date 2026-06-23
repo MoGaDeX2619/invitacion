@@ -1,338 +1,71 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-FORM</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    body.eform-page {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.24), transparent 24%),
-                  radial-gradient(circle at bottom right, rgba(1, 115, 218, 0.18), transparent 25%),
-                  #020916;
-      color: #eaf5ff;
-    }
-    body.eform-page::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-                        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .content-page {
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      margin: 40px auto 60px;
-      padding: 36px;
-      background: rgba(5, 14, 35, 0.96);
-      border: 1px solid rgba(31, 221, 255, 0.18);
-      border-radius: 32px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
-    }
-    .hero-banner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      margin-bottom: 34px;
-      padding: 26px;
-      background: rgba(0, 36, 68, 0.92);
-      border: 1px solid rgba(41, 229, 255, 0.18);
-      border-radius: 28px;
-    }
-    .hero-banner h2 {
-      margin: 0;
-      font-size: 1.55rem;
-      color: #a8f1ff;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(3, 39, 65, 0.95);
-      border: 1px solid rgba(33, 206, 255, 0.18);
-      color: #c7e8ff;
-      font-weight: 600;
-    }
-    .hero-chips .chip {
-      background: rgba(9, 56, 94, 0.92);
-      border-color: rgba(23, 188, 255, 0.18);
-    }
-    .tagline {
-      margin-top: 34px;
-      padding: 26px;
-      border-radius: 28px;
-      background: rgba(4, 27, 50, 0.95);
-      border: 1px solid rgba(34, 197, 255, 0.18);
-      display: grid;
-      gap: 14px;
-    }
-    .tagline p {
-      margin: 0;
-      font-size: 1.05rem;
-    }
-    .tagline strong {
-      color: #eaf6ff;
-    }
-    @media (max-width: 820px) {
-      .content-page {
-        margin: 24px 16px 48px;
-        padding: 28px;
-      }
-      .hero-banner,
-      .grid-section {
-        grid-template-columns: 1fr;
-      }
-    }
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      margin: 40px auto 60px;
-      padding: 36px;
-      background: rgba(6, 12, 34, 0.96);
-      border: 1px solid rgba(56, 168, 255, 0.12);
-      border-radius: 32px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
-    }
-    .content-page::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 32px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(0, 194, 255, 0.2), transparent 35%, rgba(6, 220, 156, 0.18));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-    .back-link {
-      margin-bottom: 24px;
-    }
-    .back-link a {
-      color: #7ce1ff;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid rgba(124, 225, 255, 0.25);
-      padding: 10px 16px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s ease;
-    }
-    .back-link a:hover {
-      background: rgba(124, 225, 255, 0.1);
-    }
-    .project-logo {
-      width: 100px;
-      max-width: 100%;
-      display: block;
-      margin-bottom: 20px;
-      border-radius: 18px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
-    }
-    h1 {
-      margin-top: 0;
-      font-size: clamp(3rem, 5vw, 4.5rem);
-      letter-spacing: 0.06em;
-      color: #f0fbff;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    h3 {
-      color: #86c9ff;
-      margin-bottom: 18px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    p,
-    li {
-      color: #d4e7ff;
-      line-height: 1.9;
-      margin-bottom: 16px;
-      font-size: 1rem;
-    }
-    strong {
-      color: #f8fcff;
-    }
-    ul {
-      padding-left: 1.35rem;
-      margin: 0 0 20px 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-    ul li {
-      position: relative;
-      padding-left: 24px;
-    }
-    ul li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.65em;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4fd3ff, #6ec6ff);
-      box-shadow: 0 0 12px rgba(109, 206, 255, 0.5);
-    }
-    .hero-banner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      margin-bottom: 34px;
-      padding: 26px;
-      background: rgba(3, 19, 44, 0.95);
-      border: 1px solid rgba(74, 167, 255, 0.18);
-      border-radius: 28px;
-    }
-    .hero-banner h2 {
-      margin: 0;
-      font-size: 1.55rem;
-      color: #bde7ff;
-    }
-    .hero-banner p {
-      margin: 14px 0 0;
-      max-width: 560px;
-    }
-    .hero-chips {
-      display: grid;
-      gap: 14px;
-      margin-top: 22px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(12, 28, 56, 0.95);
-      border: 1px solid rgba(95, 188, 255, 0.18);
-      color: #c7e8ff;
-      font-weight: 600;
-    }
-    .grid-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-    .panel {
-      padding: 24px;
-      border-radius: 28px;
-      background: rgba(5, 14, 34, 0.95);
-      border: 1px solid rgba(77, 175, 255, 0.14);
-      box-shadow: inset 0 0 30px rgba(24, 84, 139, 0.12);
-    }
-    .panel h3 {
-      margin-top: 0;
-      font-size: 1.2rem;
-    }
-    .panel ul {
-      padding-left: 1rem;
-    }
-    .panel li {
-      margin-bottom: 12px;
-    }
-    .tagline {
-      margin-top: 34px;
-      padding: 26px;
-      border-radius: 28px;
-      background: rgba(9, 24, 50, 0.95);
-      border: 1px solid rgba(102, 204, 255, 0.18);
-      display: grid;
-      gap: 14px;
-    }
-    .tagline p {
-      margin: 0;
-      font-size: 1.05rem;
-    }
-    .tagline strong {
-      color: #eaf6ff;
-    }
-    @media (max-width: 820px) {
-      .content-page {
-        margin: 24px 16px 48px;
-        padding: 28px;
-      }
-      .hero-banner,
-      .grid-section {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body class="eform-page">
-  <div class="content-page">
-    <p class="back-link"><a href="index.html">← Volver al inicio</a></p>
-    <div class="hero-banner">
+  <main class="content-page">
+    <p class="back-link"><a href="index.html">Volver al inicio</a></p>
+
+    <section class="hero-banner">
       <div>
-        <h2>E-FORM</h2>
-        <p><strong>E-FORM</strong> es una plataforma digital diseñada para la creación, gestión y automatización de formularios electrónicos, permitiendo optimizar la recopilación, almacenamiento y procesamiento de información de manera eficiente y segura.</p>
+        <p class="eyebrow">Plataforma tecnológica</p>
+        <h1>E-FORM</h1>
+        <p><strong>E-FORM</strong> es una plataforma digital para crear, gestionar y automatizar formularios electrónicos, optimizando la recopilación, almacenamiento y procesamiento de información de forma eficiente y segura.</p>
         <div class="hero-chips">
           <span class="chip">Automatización</span>
           <span class="chip">Seguridad</span>
           <span class="chip">Datos inteligentes</span>
         </div>
       </div>
-      <div>
-        <div class="chip">E-FORM</div>
-        <div class="chip">Plataforma tecnológica</div>
-        <div class="chip">Transformación digital</div>
+      <div class="side-stack">
+        <img src="logo eform.png" alt="Logo E-FORM" class="project-logo-large">
+        <span class="chip">Transformación digital</span>
+        <span class="chip">Gestión de registros</span>
       </div>
-    </div>
+    </section>
 
-    <div class="grid-section">
+    <section class="grid-section">
       <div class="panel">
-        <h3>🚀 Misión</h3>
-        <p>Desarrollar soluciones tecnológicas innovadoras que faciliten la gestión de información mediante formularios digitales inteligentes, optimizando procesos, mejorando la productividad y contribuyendo a la transformación digital de empresas e instituciones.</p>
+        <h3>Misión</h3>
+        <p>Desarrollar soluciones tecnológicas que faciliten la gestión de información mediante formularios digitales inteligentes, optimizando procesos y mejorando la productividad de empresas e instituciones.</p>
       </div>
       <div class="panel">
-        <h3>🎯 Visión</h3>
-        <p>Ser una plataforma líder en la digitalización y automatización de procesos administrativos y empresariales, reconocida por su innovación, confiabilidad y capacidad para transformar la manera en que las organizaciones gestionan su información.</p>
+        <h3>Visión</h3>
+        <p>Ser una plataforma reconocida por su innovación, confiabilidad y capacidad para transformar la manera en que las organizaciones administran su información.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="grid-section">
+    <section class="grid-section">
       <div class="panel">
-        <h3>⚙️ Funcionalidades principales</h3>
+        <h3>Funcionalidades principales</h3>
         <ul>
           <li>Creación de formularios personalizados.</li>
           <li>Gestión centralizada de datos.</li>
           <li>Automatización de procesos y registros.</li>
           <li>Generación de reportes en tiempo real.</li>
           <li>Acceso seguro a la información.</li>
-          <li>Reducción del uso de documentos físicos.</li>
         </ul>
       </div>
       <div class="panel">
-        <h3>💡 Beneficios</h3>
+        <h3>Beneficios</h3>
         <ul>
-          <li>Ahorro de tiempo.</li>
+          <li>Ahorro de tiempo en tareas administrativas.</li>
           <li>Mayor organización de la información.</li>
           <li>Reducción de errores manuales.</li>
           <li>Mejora en la toma de decisiones.</li>
-          <li>Transformación digital de procesos.</li>
+          <li>Menor dependencia de documentos físicos.</li>
         </ul>
       </div>
-    </div>
+    </section>
 
-    <div class="tagline">
-      <p><strong>"Transformando datos en soluciones inteligentes."</strong></p>
-      <p><strong>"Digitalizando procesos, impulsando resultados."</strong></p>
-    </div>
-  </div>
+    <section class="tagline">
+      <p><strong>Transformando datos en soluciones inteligentes.</strong></p>
+      <p>Digitalizando procesos para impulsar resultados medibles.</p>
+    </section>
+  </main>
 </body>
 </html>
